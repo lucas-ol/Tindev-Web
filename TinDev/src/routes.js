@@ -6,6 +6,7 @@ routes.get('/',(req,res)=>{
 });
 
 routes.post('/dev',(req,res)=>{
+    console.log(req.body)
     res.send({ok:true});
 });
 
