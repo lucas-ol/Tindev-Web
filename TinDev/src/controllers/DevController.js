@@ -20,5 +20,20 @@ module.exports = {
             avatar
         });
         return res.json(dev)
+    },
+    async Index(req, res) {
+        const { user } = req.headers;
+        const loggedDev = await Dev.findById(user);
+        if (!loggedDev) {
+            return res.status(400).json({ error: "Dev not exists" });
+        }
+        const users = await Dev.find({
+            $and: [
+                { _id: { $ne: user } },
+                { _id: { $nin: loggedDev.likes } },
+                { _id: { $nin: loggedDev.dislikes } },
+            ]
+        });
+        return res.json(users);
     }
 };

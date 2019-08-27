@@ -10,11 +10,11 @@ const devSchema = new Schema({
         required: true
     },
     bio: String,
-    like: [{
+    likes: [{
         type: Schema.Types.ObjectId,
         ref: 'Dev'
     }],
-    dislike: [{
+    dislikes: [{
         type: Schema.Types.ObjectId,
         ref: 'Dev'
     }],
